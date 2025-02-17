@@ -17,7 +17,7 @@ class Fixed
 		~Fixed();
 		// ◦A member function int getRawBits( void ) const;
 		// that returns the raw value of the fixed-point value.
-		int getRawBits( void );
+		int getRawBits( void ) const;
 		// ◦A member function void setRawBits( int const raw );
 		// that sets the raw value of the fixed-point number.
 		void setRawBits( int const raw );
