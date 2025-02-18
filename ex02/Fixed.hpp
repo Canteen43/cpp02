@@ -37,112 +37,36 @@ class Fixed
 		// that converts the fixed-point value to an integer value.
 		int toInt( void ) const;
 		// •The 6 comparison operators: >, <, >=, <=, == and !=.
-		bool operator>(const Fixed& other) const
-		{
-			return (value > other.value);
-		}
-		bool operator<(const Fixed& other) const
-		{
-			return (value < other.value);
-		}
-		bool operator>=(const Fixed& other) const
-		{
-			return (value >= other.value);
-		}
-		bool operator<=(const Fixed& other) const
-		{
-			return (value <= other.value);
-		}
-		bool operator==(const Fixed& other) const
-		{
-			return (value == other.value);
-		}
-		bool operator!=(const Fixed& other) const
-		{
-			return (value != other.value);
-		}
+		bool operator>(const Fixed& other) const;
+		bool operator<(const Fixed& other) const;
+		bool operator>=(const Fixed& other) const;
+		bool operator<=(const Fixed& other) const;
+		bool operator==(const Fixed& other) const;
+		bool operator!=(const Fixed& other) const;
 		// •The 4 arithmetic operators: +, -, *, and /.
-		Fixed operator+(const Fixed& other) const
-		{
-			Fixed result;
-			result.value = value + other.value;
-			return result;
-		}
-		Fixed operator-(const Fixed& other) const
-		{
-			Fixed result;
-			result.value = value - other.value;
-			return result;
-		}
-		Fixed operator*(const Fixed& other) const
-		{
-			Fixed result;
-			result.value = value * other.value >> fbits;
-			return result;
-		}
-		Fixed operator/(const Fixed& other) const
-		{
-			Fixed result;
-			result.value = value / other.value << fbits;
-			return result;
-		}
+		Fixed operator+(const Fixed& other) const;
+		Fixed operator-(const Fixed& other) const;
+		Fixed operator*(const Fixed& other) const;
+		Fixed operator/(const Fixed& other) const;
 		// •The 4 increment/decrement (pre-increment and post-increment, pre-decrement and
 		// post-decrement) operators, that will increase or decrease the fixed-point value from
 		// the smallest representable ε such as 1 + ε > 1.
-		Fixed& operator++()
-		{
-			value++;
-			return *this;
-		}
-		Fixed operator++(int)
-		{
-			Fixed temp = *this;
-			value++;
-			return temp;
-		}
-		Fixed& operator--()
-		{
-			value--;
-			return *this;
-		}
-		Fixed operator--(int)
-		{
-			Fixed temp = *this;
-			value--;
-			return temp;
-		}
+		Fixed& operator++();
+		Fixed operator++(int);
+		Fixed& operator--();
+		Fixed operator--(int);
 		// •A static member function min that takes as parameters two references on fixed-point
 		// numbers, and returns a reference to the smallest one.
-		static Fixed& min(Fixed& first, Fixed& second)
-		{
-			if (first <= second)
-				return first;
-			return second;
-		}
+		static Fixed& min(Fixed& first, Fixed& second);
 		// •A static member function min that takes as parameters two references to constant
 		// fixed-point numbers, and returns a reference to the smallest one.
-		static const Fixed& min(const Fixed& first, const Fixed& second)
-		{
-			if (first <= second)
-				return first;
-			return second;
-		}
+		static const Fixed& min(const Fixed& first, const Fixed& second);
 		// •A static member function max that takes as parameters two references on fixed-point
 		// numbers, and returns a reference to the greatest one.
-		static Fixed& max(Fixed& first, Fixed& second)
-		{
-			if (first >= second)
-				return first;
-			return second;
-		}
+		static Fixed& max(Fixed& first, Fixed& second);
 		// •A static member function max that takes as parameters two references to constant
 		// fixed-point numbers, and returns a reference to the greatest one.
-		static const Fixed& max(const Fixed& first, const Fixed& second)
-		{
-			if (first >= second)
-				return first;
-			return second;
-		}
+		static const Fixed& max(const Fixed& first, const Fixed& second);
 	};
 // •An overload of the insertion («) operator that inserts a floating-point representation
 // of the fixed-point number into the output stream object passed as parameter.

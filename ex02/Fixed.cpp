@@ -77,3 +77,110 @@ std::ostream& operator<<(std::ostream& os, const Fixed& obj)
 	os << obj.toFloat();
 	return os;
 }
+// •The 6 comparison operators: >, <, >=, <=, == and !=.
+bool Fixed::operator>(const Fixed& other) const
+{
+	return (value > other.value);
+}
+bool Fixed::operator<(const Fixed& other) const
+{
+	return (value < other.value);
+}
+bool Fixed::operator>=(const Fixed& other) const
+{
+	return (value >= other.value);
+}
+bool Fixed::operator<=(const Fixed& other) const
+{
+	return (value <= other.value);
+}
+bool Fixed::operator==(const Fixed& other) const
+{
+	return (value == other.value);
+}
+bool Fixed::operator!=(const Fixed& other) const
+{
+	return (value != other.value);
+}
+// •The 4 arithmetic operators: +, -, *, and /.
+Fixed Fixed::operator+(const Fixed& other) const
+{
+	Fixed result;
+	result.value = value + other.value;
+	return result;
+}
+Fixed Fixed::operator-(const Fixed& other) const
+{
+	Fixed result;
+	result.value = value - other.value;
+	return result;
+}
+Fixed Fixed::operator*(const Fixed& other) const
+{
+	Fixed result;
+	result.value = value * other.value >> fbits;
+	return result;
+}
+Fixed Fixed::operator/(const Fixed& other) const
+{
+	Fixed result;
+	result.value = value / other.value << fbits;
+	return result;
+}
+// •The 4 increment/decrement (pre-increment and post-increment, pre-decrement and
+// post-decrement) operators, that will increase or decrease the fixed-point value from
+// the smallest representable ε such as 1 + ε > 1.
+Fixed& Fixed::operator++()
+{
+	value++;
+	return *this;
+}
+Fixed Fixed::operator++(int)
+{
+	Fixed temp = *this;
+	value++;
+	return temp;
+}
+Fixed& Fixed::operator--()
+{
+	value--;
+	return *this;
+}
+Fixed Fixed::operator--(int)
+{
+	Fixed temp = *this;
+	value--;
+	return temp;
+}
+// •A static member function min that takes as parameters two references on fixed-point
+// numbers, and returns a reference to the smallest one.
+Fixed& Fixed::min(Fixed& first, Fixed& second)
+{
+	if (first <= second)
+		return first;
+	return second;
+}
+// •A static member function min that takes as parameters two references to constant
+// fixed-point numbers, and returns a reference to the smallest one.
+const Fixed& Fixed::min(const Fixed& first, const Fixed& second)
+{
+	if (first <= second)
+		return first;
+	return second;
+}
+// •A static member function max that takes as parameters two references on fixed-point
+// numbers, and returns a reference to the greatest one.
+Fixed& Fixed::max(Fixed& first, Fixed& second)
+{
+	if (first >= second)
+		return first;
+	return second;
+}
+// •A static member function max that takes as parameters two references to constant
+// fixed-point numbers, and returns a reference to the greatest one.
+const Fixed& Fixed::max(const Fixed& first, const Fixed& second)
+{
+	if (first >= second)
+		return first;
+	return second;
+}
